@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <meta name="author" content="Marcelo Narváez">
+    <meta name="description" content="JavaScript lo esencial realizado por: Marcelo Narváez">	
+	<title> JavaScript | lo esencial </title>
+
+    <meta name='mobile-web-app-capable' content='yes'>
+	<link href="css/estilos.css" rel="stylesheet" >
+
+</head>
+<body>
+
+	<div class="contenedor">
+
+		<div>
+		<h1> Aplicación Estudiantes </h1>
+		</div>
+
+		<div class="listado">
+			<button onclick="lista_alumnos()" type="button" class="botones"> 
+				<img src="images/estudiante.png" alt="x" /> 
+			</button>
+
+			<div class="cuerpo">
+				<h3>Lista de Estudiantes</h3>
+				<p id="listado"></p>
+			</div>
+
+		</div>
+
+		<div class="promedio">
+			<button onclick="nota_promedio()" type="button" class="botones"> 
+				<img src="images/promedio.png" alt="x" /> 
+			</button>
+			<div class="cuerpo">
+				<h3> Nota Promedio</h3>
+				<p id="promedio"></p>
+			</div>
+		</div>
+
+		<div class="menor">
+			<button onclick="nota_mayor()" type="button" class="botones"> 
+				<img src="images/mayor.png" alt="x" /> 
+			</button>
+			<div class="cuerpo">
+				<h3> Nota Mayor</h3>
+				<p id="mayor"></p>
+			</div>
+		</div>
+
+		<div class="mayor">
+			<button onclick="nota_menor()" type="button" class="botones"> 
+				<img src="images/menor.png" alt="x" /> 
+			</button>
+			<div class="cuerpo">
+				<h3> Nota Menor</h3>
+				<p id="menor"></p>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>Realizado por: Hugo Marcelo Naráez Salazar</p>
+			<p>Correo electrónico: marcelo_memo@hotmail.com</p>
+			<p>Movil: (+593) 99 929 6231</p>
+		</div>
+
+	</div>
+
+<script type="text/javascript">
+
+    var alumnos=[
+		    {"codigo" : "1",   "nombre" : "Alejandra Narváez",  "nota": 9.75   },
+		    {"codigo" : "2",   "nombre" : "Lucia Ibujes",       "nota" : 8.35  },
+		    {"codigo" : "3",   "nombre" : "Diana Moreira",      "nota" : 7.80  },
+		    {"codigo" : "4",   "nombre" : "Danilo Narváez",     "nota" : 9.90  },
+		    {"codigo" : "5",   "nombre" : "Norma Tapia",        "nota" : 8.00  },
+		    {"codigo" : "6",   "nombre" : "Juan Peréz",         "nota" : 10    },
+		    {"codigo" : "7",   "nombre" : "Aida Salazar",       "nota" : 7.01  },
+		    {"codigo" : "8",   "nombre" : "Santiago Narváez",   "nota" : 6.40  },
+		    {"codigo" : "9",   "nombre" : "Dolores Rueda",      "nota" : 8.50  },
+		    {"codigo" : "10",  "nombre" : "Marcelo Narváez",    "nota" : 3.10  }];
+	var notas = [];
+	
+	// Funcion recorre en un nuevo array solo las notas para calcular posteriormente
+	for( num = 0; num < alumnos.length; num ++) {
+		notas.push(alumnos[num].nota);
+	}
+
+	// Funcion lista de Alumnos despliega en la pantalla		    
+    function lista_alumnos(){
+
+      	var texto = "<table> <tr> <th>Código</th> <th>Nombre</th><th>Nota</th> </tr>";
+
+      	for( num = 0; num < alumnos.length; num ++) {
+  			texto += "<tr> <td>" + alumnos[num].codigo + "</td> <td>" + alumnos[num].nombre + "</td> <td>" + alumnos[num].nota.toFixed(2) + "</td> </tr>";  		
+  		}
+
+  		texto += "</table>";
+  		document.getElementById("listado").innerHTML = texto;
+  	}
+
+	// Funcion calcula el promedio de la nota de los Alumnos  y despliega en la pantalla		    
+	function nota_promedio(){
+
+		var sum = 0;
+		var pro = 0;
+
+		for(num = 0; num < alumnos.length; num ++){
+			sum += (alumnos[num].nota);
+		}
+
+		pro = sum / 10;
+		document.getElementById("promedio").innerHTML = "El Promedio es: <b>" + pro.toFixed(2) + "</b>";
+	}
+
+	// Funcion extrae al Alumnos con la nota mayor y despliega en la pantalla		    
+	function nota_mayor(){
+
+		var mayor = notas.indexOf(Math.max.apply(null, notas ));
+		document.getElementById("mayor").innerHTML = "La nota mayor del estudiante: <b>" + nombre_alumno(mayor) + "</b>";
+	}
+
+	// Funcion extrae al Alumnos con la nota menor y despliega en la pantalla		    
+	function nota_menor(){
+
+		var menor = notas.indexOf(Math.min.apply(null, notas ));
+		document.getElementById("menor").innerHTML = "La nota menor del estudiante: <b>" + nombre_alumno(menor) + "</b>";
+	}
+
+	// Funcion para sacar el nombre del Alumno segun su pocision
+	function nombre_alumno(num){
+		return alumnos[num].nombre;
+	}
+
+
+</script>
+
+
+</body>
+</html>
